@@ -1,5 +1,6 @@
 import spotipy
 import json
+from datetime import date
 
 cred = spotipy.SpotifyClientCredentials(client_id="3d6d83f030744a4b8065ffef99420660", client_secret="7576c44b974448c884702e4e316825ff")
 
@@ -11,7 +12,11 @@ countries_list = ['AD', 'AR', 'AU', 'AT', 'BE', 'BO', 'BR', 'BG', 'CA', 'CL', 'C
                   'ES', 'SK', 'SE', 'CH', 'TW', 'TR', 'GB', 'US', 'UY']
 
 i = 0
-file = 'data.txt'
+
+today = date.today().strftime("%Y%m%d")
+
+file = 'rawdata/playlists/{}.txt'.format(today)
+
 with open(file, "w") as f:
     for country in countries_list:
         play = [(pl['name'], pl['id']) for pl in sp.category_playlists("toplists", country)['playlists']['items']]
