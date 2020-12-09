@@ -7,6 +7,8 @@ import Utilities.flattenStructSchema
 object Main {
   def main(args: Array[String]): Unit = {
 
+    val date = java.time.LocalDate.now
+
     val spark = SparkSession
       .builder()
       .appName("spotify_playlists_ingestion")
@@ -18,9 +20,9 @@ object Main {
 
     df_to_parquet.select(flattenStructSchema(df_to_parquet.schema):_*)
       .withColumn("partition_date",lit(current_date())).
-      write.mode("overwrite").parquet("parquets_data/playlists/"+lit(current_date()))
+      write.mode("overwrite").parquet("parquets_data/playlists/" + date)
 
-    val df_to_hive = spark.read.parquet("parquets_data/albums/"+lit(current_date()))
+    val df_to_hive = spark.read.parquet("parquets_data/playlists/" + date)
 
     df_to_hive.write.mode("append")
       .partitionBy("partition_date").saveAsTable("iabd1_groupe5.spotify_playlists")
