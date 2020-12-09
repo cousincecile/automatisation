@@ -1,3 +1,4 @@
+# coding: utf-8
 from spotipy.oauth2 import SpotifyClientCredentials
 import spotipy
 from datetime import date
@@ -53,9 +54,7 @@ for artist in artists_array:
 
     for item in tracks:
         print("getting tracks...")
-        item_modified = item
-        item_modified['artists'] = item_modified['artists'][0]
-        track_popularity.append(get_all_tracks_with_popularity(item_modified))
+        track_popularity.append(get_all_tracks_with_popularity(item))
 
 datedujour = today = date.today().strftime("%Y-%m-%d")
 
@@ -64,6 +63,8 @@ file = 'rawdata/albums/' + datedujour + '.txt'
 with open(file, "w") as f:
     for item in track_popularity:
         for simple_track in item:
-            json.dump(simple_track, f, sort_keys=True)
+            simple_track_modified = simple_track
+            simple_track_modified['artists'] = simple_track_modified['artists'][0]
+            json.dump(simple_track_modified, f, sort_keys=True)
             f.write('\n')
 f.close()
