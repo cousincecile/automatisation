@@ -1,5 +1,6 @@
 from spotipy.oauth2 import SpotifyClientCredentials
 import spotipy
+from datetime import date
 from pprint import pprint
 import json
 
@@ -15,6 +16,8 @@ sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 id_jul = '3IW7ScrzXmPvZhB27hmfgy'
 id_nekfeu = '4LXBc13z5EWsc5N32bLxfH'
 id_petitb = '6gK1Uct5FEdaUWRWpU4Cl2' 
+
+artists_array = [id_jul, id_nekfeu, id_petitb]
 
 def get_all_albums_id(id):
     albums_ids = []
@@ -36,21 +39,29 @@ def get_all_tracks_with_popularity(ids):
         tracks.append((sp.track(item)))
     return tracks
 
-albums_id = get_all_albums_id(id_nekfeu)
-tracks = []
-for item in albums_id:
-    print("1")
-    tracks.append(get_all_tracks_id(item))
-
 track_popularity = []
 
-for item in tracks:
-    print("2")
-    track_popularity.append(get_all_tracks_with_popularity(item))
+for artist in artists_array:
 
-file = 'data_popularity.txt'
+    print("getting albums_id...")
+    albums_id = get_all_albums_id(artist)
+    tracks = []
+
+    for item in albums_id:
+        print("getting tracks_id...")
+        tracks.append(get_all_tracks_id(item))
+
+    for item in tracks:
+        print("getting tracks...")
+        track_popularity.append(get_all_tracks_with_popularity(item))
+
+datedujour = today = date.today().strftime("%Y-%m-%d")
+
+file = 'rawdata/albums/' + datedujour + '.txt'
+
 with open(file, "w") as f:
-    json.dump(track_popularity, f, sort_keys=True)
-
-
-#print(get_all_tracks_with_popularity(get_all_tracks_id('5e5kGSnnDPARPjjrUdGWjf')))
+    for item in track_popularity:
+        for simple_track in item:
+            json.dump(simple_track, f, sort_keys=True)
+            f.write('\n')
+f.close()
