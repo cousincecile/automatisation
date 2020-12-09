@@ -1,4 +1,4 @@
-name := "spotify_playlists_ingestion"
+name := "spotify_albums_ingestion"
 
 version := "0.1"
 
