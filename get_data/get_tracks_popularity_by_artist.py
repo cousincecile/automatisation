@@ -53,7 +53,9 @@ for artist in artists_array:
 
     for item in tracks:
         print("getting tracks...")
-        track_popularity.append(get_all_tracks_with_popularity(item))
+        item_modified = item
+        item_modified['artists'] = item_modified['artists'][0]
+        track_popularity.append(get_all_tracks_with_popularity(item_modified))
 
 datedujour = today = date.today().strftime("%Y-%m-%d")
 
