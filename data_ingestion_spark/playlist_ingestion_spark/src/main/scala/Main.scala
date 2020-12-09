@@ -14,10 +14,16 @@ object Main {
       .getOrCreate()
 
     val encoderSchema = Encoders.product[JsonObject].schema
-    val df = spark.read.schema(encoderSchema).json("path_to_data")
+    val df_to_parquet = spark.read.schema(encoderSchema).json("path_to_data")
 
-    df.select(flattenStructSchema(df.schema):_*).withColumn("partition_date",lit(current_date()))
-      .write.mode("overwrite").parquet("parquets_data/playlists/"+lit(current_date()))
+    df_to_parquet.select(flattenStructSchema(df_to_parquet.schema):_*)
+      .withColumn("partition_date",lit(current_date())).
+      write.mode("overwrite").parquet("parquets_data/playlists/"+lit(current_date()))
+
+    val df_to_hive = spark.read.parquet("parquets_data/albums/"+lit(current_date()))
+
+    df_to_hive.write.mode("append")
+      .partitionBy("partition_date").saveAsTable("iabd1_groupe5.spotify_playlists")
 
   }
 }
