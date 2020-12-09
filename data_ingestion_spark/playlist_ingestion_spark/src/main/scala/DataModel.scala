@@ -4,9 +4,8 @@ case class Artists(
                   )
 
 case class Playlist(
-                     playlist_country: String,
-                     playlist_id: String,
-                     playlist_name: String,
+                     id: String,
+                     name: String,
                    )
 
 case class JsonObject(

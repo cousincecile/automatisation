@@ -6,16 +6,13 @@ cred = spotipy.SpotifyClientCredentials(client_id="3d6d83f030744a4b8065ffef99420
 
 sp = spotipy.Spotify(client_credentials_manager=cred)
 
-countries_list = ['AD', 'AR', 'AU', 'AT', 'BE', 'BO', 'BR', 'BG', 'CA', 'CL', 'CO', 'CR', 'CY', 'CZ', 'DK', 'DO', 'EC',
-                  'SV', 'EE', 'FI', 'FR', 'DE', 'GR', 'GT', 'HN', 'HK', 'HU', 'IS', 'ID', 'IE', 'IT', 'JP', 'LV', 'LI',
-                  'LT', 'LU', 'MY', 'MT', 'MX', 'MC', 'NL', 'NZ', 'NI', 'NO', 'PA', 'PY', 'PE', 'PH', 'PL', 'PT', 'SG',
-                  'ES', 'SK', 'SE', 'CH', 'TW', 'TR', 'GB', 'US', 'UY']
+countries_list = ['FR']
 
 i = 0
 
 today = date.today().strftime("%Y-%m-%d")
 
-file = 'rawdata/playlists/{}.txt'.format(today)
+file = '{}.txt'.format(today)
 
 with open(file, "w") as f:
     for country in countries_list:
@@ -26,10 +23,8 @@ with open(file, "w") as f:
             for track in track_list:
                 track['artists'] = track['artists'][0]
                 track['playlist'] = {
-                    "playlist_id": playlist['id'],
-                    "playlist_name": playlist['name'],
-                    "playlist_url": playlist['external_urls'],
-                    "playlist_country": country
+                    "id": playlist['id'],
+                    "name": playlist['name']
                 }
                 json.dump(track, f, sort_keys=True)
                 f.write('\n')
