@@ -13,7 +13,7 @@ countries_list = ['AD', 'AR', 'AU', 'AT', 'BE', 'BO', 'BR', 'BG', 'CA', 'CL', 'C
 
 i = 0
 
-today = date.today().strftime("%Y%m%d")
+today = date.today().strftime("%Y-%m-%d")
 
 file = 'rawdata/playlists/{}.txt'.format(today)
 
