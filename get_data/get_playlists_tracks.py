@@ -24,6 +24,7 @@ with open(file, "w") as f:
             playlist = sp.playlist(p[1])
             track_list = [track['track'] for track in playlist['tracks']['items'] if track['track'] is not None]
             for track in track_list:
+                track['artists'] = track['artists'][0]
                 track['playlist'] = {
                     "playlist_id": playlist['id'],
                     "playlist_name": playlist['name'],
