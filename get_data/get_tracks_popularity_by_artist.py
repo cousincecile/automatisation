@@ -56,9 +56,9 @@ for artist in artists_array:
         print("getting tracks...")
         track_popularity.append(get_all_tracks_with_popularity(item))
 
-datedujour = today = date.today().strftime("%Y-%m-%d")
+today = date.today().strftime("%Y-%m-%d")
 
-file = 'rawdata/albums/' + datedujour + '.txt'
+file = 'raw_data/albums/{}.txt'.format(today)
 
 with open(file, "w") as f:
     for item in track_popularity:
@@ -67,4 +67,3 @@ with open(file, "w") as f:
             simple_track_modified['artists'] = simple_track_modified['artists'][0]
             json.dump(simple_track_modified, f, sort_keys=True)
             f.write('\n')
-f.close()

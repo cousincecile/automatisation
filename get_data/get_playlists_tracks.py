@@ -2,7 +2,7 @@ import spotipy
 import json
 from datetime import date
 
-cred = spotipy.SpotifyClientCredentials(client_id="3d6d83f030744a4b8065ffef99420660", client_secret="7576c44b974448c884702e4e316825ff")
+cred = spotipy.SpotifyClientCredentials(client_id='2c5fa0bc4bb5411ba0b5f6d844089b4d', client_secret='fda690d54f1a48f4b8adf2ea88f6b45d')
 
 sp = spotipy.Spotify(client_credentials_manager=cred)
 
@@ -11,11 +11,9 @@ countries_list = ['AD', 'AR', 'AU', 'AT', 'BE', 'BO', 'BR', 'BG', 'CA', 'CL', 'C
                   'LT', 'LU', 'MY', 'MT', 'MX', 'MC', 'NL', 'NZ', 'NI', 'NO', 'PA', 'PY', 'PE', 'PH', 'PL', 'PT', 'SG',
                   'ES', 'SK', 'SE', 'CH', 'TW', 'TR', 'GB', 'US', 'UY']
 
-i = 0
-
 today = date.today().strftime("%Y-%m-%d")
 
-file = '{}.txt'.format(today)
+file = 'raw_data/playlists/{}.txt'.format(today)
 
 with open(file, "w") as f:
     for country in countries_list:
@@ -31,6 +29,3 @@ with open(file, "w") as f:
                 }
                 json.dump(track, f, sort_keys=True)
                 f.write('\n')
-            i = i + len(track_list)
-            print(i)
-    f.close()
