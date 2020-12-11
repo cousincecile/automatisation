@@ -1,4 +1,4 @@
-# **Automationsation Infrastructure De Données**
+# **Automatisation Infrastructure De Données**
 
 Ce repos recense les codes sources, et les builds Spark permettant la mise en place de l'architecture et de l'automatisation de traitement et de stockage de données.
 
