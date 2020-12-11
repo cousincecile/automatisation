@@ -12,7 +12,9 @@ object Main {
     val spark = SparkSession
       .builder()
       .appName("spotify_playlists_ingestion")
-//      .master("local[*]")
+      .config("hive.metastore.uris", "thrift://d271ee89-3c06-4d40-b9d6-d3c1d65feb57.priv.instances.scw.cloud:9083")
+      .config("spark.sql.warehouse.dir", "/user/hive/warehouse")
+      .enableHiveSupport()
       .getOrCreate()
 
     spark.conf.set("spark.sql.sources.partitionOverwriteMode","dynamic")
