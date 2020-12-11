@@ -2,7 +2,7 @@ import spotipy
 import json
 from datetime import date
 
-cred = spotipy.SpotifyClientCredentials(client_id='2c5fa0bc4bb5411ba0b5f6d844089b4d', client_secret='fda690d54f1a48f4b8adf2ea88f6b45d')
+cred = spotipy.SpotifyClientCredentials(client_id='client_id', client_secret='client_secret')
 
 sp = spotipy.Spotify(client_credentials_manager=cred)
 
