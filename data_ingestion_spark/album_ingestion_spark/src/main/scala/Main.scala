@@ -26,7 +26,7 @@ object Main {
 
     val df_to_hive = spark.read.parquet("hdfs:///user/groupe5/parquets_data/albums/" + date)
 
-    df_to_hive.write.mode("append")
+    df_to_hive.write.mode("overwrite")
       .partitionBy("partition_date").saveAsTable("iabd1_groupe5.spotify_albums")
   }
   }
