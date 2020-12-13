@@ -13,6 +13,8 @@ Par contre, nous avons une erreur que nous n'avons pas réussi à corriger lors 
 
 Le reste de l'automatisation fonctionne. C'est la seule étape qui ne fonctionne pas dans notre automatisation Airflow.
 
+Sont fournis les 2 versions de chaque job Spark, ceux compatible avec notre edgenode et ceux à utiliser côté Airflow, dû aux versions différentes de Scala utilisées entre l'edgenode et la machine master d'Airflow. Ils sont également fournis sur le repos d'automatisation Airflow.
+
 Fraicheur des données : Dimanche 13 décembre 2020
 
 Partitions : 3 => 11/12/13 décembre 2020
