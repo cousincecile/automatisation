@@ -14,4 +14,5 @@ Par contre, nous avons une erreur que nous n'avons pas réussi à corriger lors 
 Le reste de l'automatisation fonctionne. C'est la seule étape qui ne fonctionne pas dans notre automatisation Airflow.
 
 Fraicheur des données : Dimanche 13 décembre 2020
+
 Partitions : 3 => 11/12/13 décembre 2020
